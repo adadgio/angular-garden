@@ -1,0 +1,30 @@
+/**
+ * Flex shortcuts
+ */
+[flex] {
+    display: flex;
+}
+
+[flex-rows] {
+    flex-direction: row;
+}
+
+[flex-columns] {
+    flex-direction: column;
+}
+
+[flex-fill] {
+    flex: 1;
+}
+
+[flex-align-center] {
+    align-items: center;
+}
+
+[flex-justify-center] {
+    justify-content: center;
+}
+
+[flex-align-stretch] {
+    align-items: stretch;
+}

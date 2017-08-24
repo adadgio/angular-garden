@@ -1,0 +1,29 @@
+/**
+ * Main component container styles.
+ */
+@import "../theme/variables";
+
+.page-title {
+    color: #6fa995;
+    padding-top: 40px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.knob-controls {
+    > .inner {
+        padding: 16px 16px 16px 16px;
+    }
+}
+
+.chart-container {
+    // $width: 200px;
+    $height: 360px;
+    height: height;
+
+    canvas {
+        height: $height;
+        box-sizing: border-box;
+    }
+}

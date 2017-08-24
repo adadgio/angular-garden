@@ -1,0 +1,29 @@
+/**
+ * Buttons styles
+ */
+@import "variables";
+
+button {
+    cursor: pointer;
+    color: $white;
+    border: 0px;
+    font-size: inherit;
+    line-height: 1em;
+    padding: 8px 10px;
+    border: 2px solid #265052;
+    background-color: #317d82;
+}
+
+button[disabled] {
+    color: gray;
+    background-color: gray;
+}
+
+button:hover {
+    border-color: #265052;
+    background-color: #317d82;
+}
+
+button.active {
+
+}

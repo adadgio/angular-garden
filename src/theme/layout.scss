@@ -1,0 +1,119 @@
+/**
+ * Common base layouts.
+ */
+@import "variables";
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, [viewport] {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+[viewport] {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+body {
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    color: $textColor;
+    background-color: $bgGreen;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+    font-size: 30px;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-weight: 200;
+}
+
+[margin] {
+    margin: 16px 16px 16px 16px;
+}
+
+.status {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    color: #f9f9f9;
+    text-align: center;
+    transition: visibility 0s, opacity 0.4s ease;
+
+    > span {
+        display: inline-block;
+        padding: 6px 8px;
+        font-size: 0.9em;
+        font-weight: 500;
+        background-color: #672770;
+        border-radius: 0 0 3px 3px;
+        &.error {}
+        &.success {}
+    }
+
+    &.visible {
+        visibility: visible;
+        opacity: 1;
+    }
+    &.hidden {
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+
+.debug {
+    color: #265052;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 340px;
+    height: 200px;
+    height: 21px;
+    font-size: 12px;
+    font-family: Monospace, sans-serif;
+    line-height: 1.4em;
+    background-color: #b8ced0;
+    overflow: auto;
+
+    .header {
+        height: 26px;
+        padding: 6px 8px;
+        line-height: 26px;
+        text-align: right;
+    }
+
+    .messages {
+        padding: 6px 8px;
+        text-align: left;
+    }
+}
+
+/**
+ * Scrollbars styles
+ */
+::-webkit-scrollbar-track
+{
+	// -webkit-box-shadow: inset 0 0 4px $scrollbarColor;
+	border-radius: 4px;
+	// background-color: $grayA;
+}
+
+::-webkit-scrollbar
+{
+	width: 8px;
+    height: 8px;
+	// background-color: $grayA;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 4px;
+	// -webkit-box-shadow: inset 0 0 4px $scrollbarColor;
+	// background-color: $scrollbarColor;
+}

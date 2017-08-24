@@ -1,0 +1,11 @@
+<div class="box" margin>
+
+    <div class="inner" flex flex-rows flex-align-center>
+        <span class="title" [innerText]="model.label"></span>
+        <span
+            [innerHtml]="(model.value !== null) ? model.value + ' <sup>'+ model.unit +'</sup>' : '~'"
+            class="num"
+        ></span>
+    </div>
+
+</div>

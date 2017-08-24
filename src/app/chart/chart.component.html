@@ -1,0 +1,15 @@
+<div class="chart" margin>
+    <canvas baseChart #chart
+        [chartType]="'line'"
+        [options]="chartOptions"
+        [labels]="chartLabels"
+        [colors]="chartColors"
+        [datasets]="chartData"
+    ></canvas>
+
+    <div class="switch">
+        <button (click)="changeView('days')">Days</button>
+        <button (click)="changeView('hours')">Hours</button>
+        <button (click)="changeView('minutes')">Minutes</button>
+    </div>
+</div>
