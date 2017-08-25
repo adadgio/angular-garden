@@ -155,10 +155,11 @@ export class ChartComponent implements OnInit {
         if (true === reset) {
             this.chartData[0].data = [];
             this.chartLabels = [];
+            this._dataHistory = { "sh": {}, "ah": {}, "at": {} };
         }
 
         const params: any = [
-            { group: this.view }, // `group=day`,
+            { group: this.view }, //`group=day`,
             { fields: 'id,created_at' },
         ];
 
@@ -175,70 +176,25 @@ export class ChartComponent implements OnInit {
             let parser = new LogParser(JSON.parse(res._body));
 
             parser.parseMap((row: any) => {
-                this.chartData[0].data.push(row[this.showValsOf]);
-                this.chartLabels.push(row.label);
+                const uuid = row.label;
+
+                if (typeof(this._dataHistory[this.showValsOf][uuid]) === 'undefined') {
+                    this.chartData[0].data.push(row[this.showValsOf]);
+                    this.chartLabels.push(row.label);
+                    this._dataHistory[this.showValsOf][uuid] = true;
+                }
+
             }, { group: params[0].group });
+
+            if (this.showValsOf === "sh") {
+                // console.log(this.chartLabels);
+                // console.log(this.chartData[0].data);
+            }
 
             this.chart.chart.update();
 
         }).catch(e => {
             console.log(e);
         });
-
-
-        setTimeout(() => {
-            console.log('now removing values');
-            this.chartData[0].data.shift();
-            this.chartLabels.shift();
-            this.chart.chart.update();
-        }, 2500)
     }
-
-    // private parseChartDataFromLogs(data: any)
-    // {
-    //     let prevTime = null;
-    //     const lines = data.split("\n");
-    //     const valIndex = this._showValsOfMapIndex[this.showValsOf];
-    //
-    //     for (let line of lines) {
-    //         // skip empty lines
-    //         if (line === "") { continue; }
-    //
-    //         const parts = line.split("| ");
-    //         if (parts.length !== 2) { continue; }
-    //
-    //         const date = moment(parts[0].trim()).utc();
-    //         const values = parts[1].split(";");
-    //         // const sh = parseInt(values[0]);
-    //         // const ah = parseInt(values[1]);
-    //         // const at = parseInt(values[2]);
-    //         // see documentation at @docs-A01
-    //         const pointValue = parseInt(values[valIndex]);
-    //
-    //         const label = date.format("hh:mm"); // "dd Mo, hh:mm"
-    //         const uuid = date.toString();
-    //
-    //         // skip some value, and lets just use a tick every 30 seconds
-    //         const timestamp = date.valueOf();
-    //         if (prevTime === null) { prevTime = timestamp; }
-    //
-    //         if (timestamp - prevTime < 1000*60*CHART_POINT_EVERY_X_MIN) {
-    //             continue;
-    //         } else {
-    //             prevTime = timestamp;
-    //         }
-    //
-    //         // if this is already in the data history...
-    //         if (typeof this._dataHistory[this.showValsOf][uuid] === 'undefined') {
-    //
-    //             // THIS IS THE RELEVANT PART FOR THIS ISSUE!
-    //             this.chartData[0].data.push(pointValue);
-    //             this.chartLabels.push(label);
-    //             this._dataHistory[this.showValsOf][uuid] = true; // and push bool to data history (point exists)
-    //         }
-    //     }
-    //
-    //     // i DO CALL chart update...
-    //     this.chart.chart.update();
-    // }
 }

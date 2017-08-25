@@ -6,11 +6,12 @@ import * as moment from 'moment';
 export class LogParser {
 
     private data: any = [];
+    private _once = true;
 
     private ticksFormats = {
         days: 'Do MMM',
-        hours: 'hh:mm',
-        minutes: 'hh:mm',
+        hours: 'HH:mm',
+        minutes: 'HH:mm',
     };
 
     constructor(data: any)
@@ -24,7 +25,7 @@ export class LogParser {
             const row = this.data[i];
             const time = moment.utc(row.created_at);
 
-            row.label = time.format(this.ticksFormats[opts.group]);
+            row.label = time.local().format(this.ticksFormats[opts.group]);
 
             fn(row);
         }

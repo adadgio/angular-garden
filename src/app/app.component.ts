@@ -95,7 +95,7 @@ export class AppComponent implements OnInit {
         const position = this.servoAngle;
         this.sendServoCommand(position);
     }
-
+    
     /**
      * Send the arduino a rest http command to rotate the servo.
      * @return void
