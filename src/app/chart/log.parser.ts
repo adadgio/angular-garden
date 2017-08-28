@@ -9,9 +9,9 @@ export class LogParser {
     private _once = true;
 
     private ticksFormats = {
-        days: 'Do MMM',
-        hours: 'HH:mm',
-        minutes: 'HH:mm',
+        days: "Do MMM",
+        hours: "HH:mm",
+        minutes: "HH:mm",
     };
 
     constructor(data: any)
